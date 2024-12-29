@@ -85,7 +85,7 @@ const Header = () => {
         </div>
 
         <div className='flex items-center max-lg:ml-auto space-x-4'>
-          <button type="button" className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-white text-[15px] font-semibold flex items-center justify-center gap-2">
+          <button type="button" className="bg-blue-600 hover:bg-blue-700 px-4 py-2  text-white text-[15px] font-semibold flex items-center justify-center gap-2">
             <LogIn className="w-4 h-4" />
             Write a Blog
           </button>

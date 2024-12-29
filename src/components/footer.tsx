@@ -32,7 +32,7 @@ const Footer = () => {
               <ul className="space-y-5">
                 {section.links.map((link) => (
                   <li key={link}>
-                    <Link href={`/${link.toLowerCase()}`} className=" text-base inline-flex items-center transition-all">
+                    <Link href={`/${link.toLowerCase()}`} className="text-white text-base inline-flex items-center transition-all">
                       <ChevronRight className="inline mr-1.5 h-4 w-4 shrink-0" />
                       {link}
                     </Link>

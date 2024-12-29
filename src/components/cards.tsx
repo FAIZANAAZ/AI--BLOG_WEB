@@ -3,50 +3,57 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { useState } from 'react'
-
-// Sample data structure
-const articles = Array.from({ length: 48 }, (_, i) => ({
-  id: i + 1,
-  title: [
-    "More Than Just Words: How Retrieval Augmented Generation (RAG) Improves Human-AI Collaboration",
-    "Don't Just Generate, Understand! How Retrieval Augmented Generation Makes AI More Insightful",
-    "Fact-Checking Your AI? How Retrieval Augmented Generation Ensures Trustworthy Results"
-  ][i % 3],
-  date: new Date(2024, 4, 7 + (i % 2)),
-  image: [
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600"
-  ][i % 3]
-}))
+import { useEffect, useState } from 'react'
+import { client } from '@/sanity/lib/client'
 
 export default function CardGrid() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 12;
+  interface Blog {
+    blogImage: string;
+    blogHeading: string;
+    blogDate: string;
+  }
 
-  const startIndex = (currentPage - 1) * articlesPerPage;
-  const endIndex = startIndex + articlesPerPage;
-  const currentArticles = articles.slice(startIndex, endIndex);
+  const [res, setRes] = useState<Blog[]>([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const articlesPerPage = 12
 
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const data = await client.fetch(`*[_type=='cards'][0].blogs[] {
+          'blogImage': blogImage.asset->url,
+          'blogHeading': blogHeading,
+          'blogDate': blogDate
+        }`)
+      setRes(data)
+    }
+    fetchBlogs()
+  }, [])
+
+  // Calculate the articles to display for the current page
+  const startIndex = (currentPage - 1) * articlesPerPage
+  const endIndex = startIndex + articlesPerPage
+  const currentArticles = res.slice(startIndex, endIndex)
+
+  const totalPages = Math.ceil(res.length / articlesPerPage)
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentArticles.map((article) => (
+    <div className="container mx-auto px-10 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {currentArticles.map((article, index) => (
           <Link
             href="#"
-            key={article.id}
+            key={index}
             className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
-                     transition-all duration-300 hover:-translate-y-1
-                     hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-                     dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.12)]"
+            transition-all duration-300 border border-blue-500 
+            hover:-translate-y-1
+            hover:shadow-[0_0_15px_3px_rgb(59,130,246,0.7)]
+            dark:hover:shadow-[0_0_15px_3px_rgba(59,130,246,0.9)]"
+  
           >
             <div className="relative aspect-[16/9] overflow-hidden">
               <Image
-                src={article.image}
-                alt={article.title}
+                src={article.blogImage}
+                alt={article.blogHeading}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -54,15 +61,15 @@ export default function CardGrid() {
 
             <div className="flex flex-col p-6">
               <time className="text-sm text-gray-500 dark:text-gray-400">
-                {article.date.toLocaleDateString('en-US', {
+                {new Date(article.blogDate).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
-                  day: 'numeric'
+                  day: 'numeric',
                 })}
               </time>
-              
+
               <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white line-clamp-2">
-                {article.title}
+                {article.blogHeading}
               </h3>
 
               <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400">
