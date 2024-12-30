@@ -26,7 +26,7 @@ const Header = () => {
               <X className="w-3.5 h-3.5 text-black" />
             </button>
           )}
-<ul className="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+<ul className="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 ">
   {/* Logo for Mobile */}
   <li className="mb-6 hidden max-lg:block">
     <Link href="/">
@@ -43,7 +43,7 @@ const Header = () => {
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
       href="/"
-      className="hover:underline hover:text-[#007bff] text-[#007bff] font-bold block text-[26px]"
+      className="hover:underline hover:text-[#007bff]  text-white font-bold block text-[26px]"
     >
       Home
     </Link>
@@ -55,7 +55,7 @@ const Header = () => {
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
       href="/blog"
-      className="hover:underline hover:text-[#007bff] text-gray-600 font-bold block text-[26px]"
+      className="hover:underline hover:text-[#007bff] text-white  font-bold block text-[26px]"
     >
       Blog
     </Link>
@@ -65,7 +65,7 @@ const Header = () => {
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
       href="/about"
-      className="hover:underline hover:text-[#007bff] text-gray-600 font-bold block text-[26px]"
+      className="hover:underline hover:text-[#007bff] text-white  font-bold block text-[26px]"
     >
       About us
     </Link>
@@ -75,7 +75,7 @@ const Header = () => {
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
       href="/contact"
-      className="hover:underline hover:text-[#007bff] text-gray-600 font-bold block text-[26px]"
+      className="hover:underline hover:text-[#007bff] text-white font-bold block text-[26px]"
     >
       Contact
     </Link>

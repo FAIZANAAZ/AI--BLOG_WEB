@@ -11,6 +11,7 @@ export default function CardGrid() {
     blogImage: string;
     blogHeading: string;
     blogDate: string;
+    blogContent: string;
   }
 
   const [res, setRes] = useState<Blog[]>([])
@@ -22,7 +23,8 @@ export default function CardGrid() {
       const data = await client.fetch(`*[_type=='cards'][0].blogs[] {
           'blogImage': blogImage.asset->url,
           'blogHeading': blogHeading,
-          'blogDate': blogDate
+          'blogDate': blogDate,
+           'blogContent': blogContent[].children[0].text
         }`)
       setRes(data)
     }
@@ -39,9 +41,9 @@ export default function CardGrid() {
   return (
     <div className="container mx-auto px-10 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {currentArticles.map((article, index) => (
-          <Link
-            href="#"
+
+      {currentArticles.map((article, index) => (
+              <Link href={`/Blogs/BlogDetail?blogHeading=${article.blogHeading}&blogImage=${article.blogImage}&blogContent=${article.blogContent}`} 
             key={index}
             className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
             transition-all duration-300 border border-blue-500 
@@ -73,12 +75,15 @@ export default function CardGrid() {
               </h3>
 
               <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400">
+                <button className='px-2 py-1 bg-blue-500 text-white  hover:bg-blue-700'>
                 <span className="text-sm font-medium">Read more</span>
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
             </div>
           </Link>
         ))}
+     
       </div>
 
       {/* Pagination Controls */}
