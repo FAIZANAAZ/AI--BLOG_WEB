@@ -61,7 +61,7 @@ export default function ContactForm() {
   
   
   return (
-    <div  className="bg-white py-16 px-4">
+    <div  className="bg-white py-16 px-4 ">
       <div data-aos="zoom-in" className="container mx-auto max-w-2xl">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-2">Lets connect !</h2>
@@ -72,10 +72,11 @@ export default function ContactForm() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1  gap-6">
-            <div className="space-y-2 w-full">
+            <div className="space-y-2 w-full gap-2 flex justify-center items-center">
               <Label htmlFor="name">Name*</Label>
               <Input 
                 id="name" 
+                className='border-gray-400 border-2'
                 placeholder=" Faiza Naaz" 
                 required 
                 name="name" value={name} onChange={(e) => setName(e.target.value)}
@@ -85,19 +86,21 @@ export default function ContactForm() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
+            <div className="space-y-2 gap-2 flex justify-center items-center">
               <Label htmlFor="email">Email*</Label>
               <Input 
                 id="email" 
                 type="email" 
+                className='border-gray-400 border-2'
                 placeholder="naaz@company.pk" 
                 required 
                 name="email" value={email} onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2  flex justify-center items-center gap-2">
               <Label htmlFor="phone">Contact number</Label>
               <Input 
+                className='border-gray-400 border-2'
                 id="phone" 
                 type="tel" 
                 placeholder="+92 300 1234567" 
@@ -120,12 +123,8 @@ export default function ContactForm() {
 
           <Button 
             type="submit" 
-            className="w-full md:w-auto bg-blue-600 hover:bg-blue-800 text-white"
-         
-         
-          >
+            className="w-full md:w-auto bg-blue-600 hover:bg-blue-800 border-black md:px-8 border-2  text-white" >
             Submit
-      
           </Button>
         </form>
 

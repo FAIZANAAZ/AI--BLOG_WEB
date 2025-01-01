@@ -9,7 +9,7 @@ const Hero = () => {
             if (typeof window !== "undefined") {
               AOS.init({
                 offset: 200, // Jab 200px scroll ho, tab animation trigger ho
-                duration: 400, // Animation ka duration
+                duration: 800, // Animation ka duration
                 easing: 'ease-in-out', // Animation ka easing effect
                 once: true, 
                 delay: 100, // Animation sirf ek baar chale

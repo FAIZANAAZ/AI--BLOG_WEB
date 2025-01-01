@@ -7,12 +7,21 @@ import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { PortableTextBlock } from '@portabletext/react'
+
+interface BlogData {
+  blogImage: string;
+  blogHeading: string;
+  blogContent: PortableTextBlock[];
+  blogDate: string;
+  blogId: number
+}
 
 
 
 
 
-export default function CardGrid() {
+export default function LatestCard() {
   // for animation 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -35,8 +44,7 @@ export default function CardGrid() {
   }
 
   const [res, setRes] = useState<Blog[]>([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const articlesPerPage = 12
+
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -53,17 +61,13 @@ export default function CardGrid() {
   }, [])
 
   // Calculate the articles to display for the current page
-  const startIndex = (currentPage - 1) * articlesPerPage
-  const endIndex = startIndex + articlesPerPage
-  const currentArticles = res.slice(startIndex, endIndex)
 
-  const totalPages = Math.ceil(res.length / articlesPerPage)
 
   return (
     <div className="container mx-auto px-10 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-      {currentArticles.map((article, index) => (
+      {[...res].reverse().slice(0,3).map((article:BlogData, index) => (
               <Link  href={`/Blogs/${article.blogId}`} 
             key={index}>
            <div data-aos="flip-left" className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
@@ -107,27 +111,6 @@ export default function CardGrid() {
       </div>
 
       {/* Pagination Controls */}
-      <div className="mt-8 flex justify-center items-center gap-4">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 bg-blue-500 text-white rounded-lg ${
-            currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-          }`}
-        >
-          Previous
-        </button>
-        <span className="text-gray-600">Page {currentPage} of {totalPages}</span>
-        <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className={`px-4 py-2 bg-blue-500 text-white rounded-lg ${
-            currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-          }`}
-        >
-          Next
-        </button>
-      </div>
       
     </div>
   )

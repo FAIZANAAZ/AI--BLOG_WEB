@@ -4,6 +4,8 @@ import Image from "next/image";
 import { PortableText, PortableTextBlock } from '@portabletext/react'
 import { useParams } from "next/navigation";
 import { fetcher } from "@/services/api";
+import LatestCard from "@/components/latestblog";
+import CommentBlog from "../../../components/comment";
 
 
 interface BlogData {
@@ -36,7 +38,7 @@ export default function BlogDetail() {
     fetchBlogs()
   }, [BlogDetail,data]);
 
-  return (
+  return (<>
     <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:pl-[50px] sm:pr-[100px] py-8 bg-black">
       {data && (
         <>
@@ -61,13 +63,29 @@ export default function BlogDetail() {
       index === 0 ? "text-center hidden  text-[40px] font-bold" : ""
      } ${
       content.children && content.children[0].text === "TL;DR" ? "   text-[40px] font-bold" : ""
-     }  ${content.style=="h2" ? "p-3 text-blue-900 text-[20px] font-bold bg-white text-center" : ""}`}
+     }  ${content.style=="h2" ? "p-3 text-blue-700 text-[20px] font-bold bg-white text-center" : ""}`}
   >
     <PortableText value={content} />
   </div>
 ))}
         </>
       )}
+
+
     </div>
+    <div>
+      {/* sbsy phly yha hmny id pas ki params me anywali tky jo card ay commentbhi osi blog pr ho osky ilawa na ho*/}
+    <CommentBlog blog_id={Number(BlogDetail)}/>
+    </div>
+    <div className="flex flex-col w-full">
+      <h1 className="md:text-5xl font-bold text-[20px] sm:text-[30px] text-blue-400 mb-6 text-center underline">Latest Blogs</h1>
+
+
+    <LatestCard/>
+    
+    </div>
+
+    </>
+
   );
 }
