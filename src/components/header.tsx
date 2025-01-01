@@ -54,7 +54,7 @@ const Header = () => {
   {/* Blog */}
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
-      href="/blog"
+      href="/Blogs"
       className="hover:underline hover:text-[#007bff] text-white  font-bold block text-[26px]"
     >
       Blog
@@ -64,7 +64,7 @@ const Header = () => {
   {/* About */}
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
-      href="/about"
+      href="/Aboutus"
       className="hover:underline hover:text-[#007bff] text-white  font-bold block text-[26px]"
     >
       About us
@@ -74,7 +74,7 @@ const Header = () => {
   {/* Contact */}
   <li className="max-lg:border-b max-lg:py-3 px-3">
     <Link
-      href="/contact"
+      href="/Contact"
       className="hover:underline hover:text-[#007bff] text-white font-bold block text-[26px]"
     >
       Contact

@@ -45,15 +45,15 @@ const Footer = () => {
 
         <hr className="border-gray-600 my-8" />
 
-        <div className="flex flex-wrap sm:justify-between gap-6 relative z-20">
+        <div className="flex flex-wrap sm:justify-between gap-6 relative  z-20">
           <div className="flex space-x-5">
-            <Link href="/facebook" className=" text-base inline-transition-all">
+            <Link href="/facebook" className=" text-base inline-transition-all bg-white">
               <Facebook className="w-5 h-5 " />
             </Link>
-            <Link href="/youtube" className=" text-base inline-transition-all">
+            <Link href="/youtube" className=" text-base inline-transition-all bg-white">
               <Instagram className="w-5 h-5 " />
             </Link>
-            <Link href="/linkedin" className=" text-base inline-transition-all">
+            <Link href="/linkedin" className=" text-base inline-transition-all bg-white">
               <Linkedin className="w-5 h-5 " />
             </Link>
           </div>
