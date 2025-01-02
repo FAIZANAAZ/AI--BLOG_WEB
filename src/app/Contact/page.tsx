@@ -32,7 +32,7 @@ export default function ContactSection() {
               </span>
             </h1>
             <p className="text-gray-300 text-lg">
-              Let's explore how we can work together to help you achieve your goals
+              Lets explore how we can work together to help you achieve your goals
             </p>
           </div>
 

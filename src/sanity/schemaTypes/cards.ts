@@ -1,5 +1,5 @@
 
- export default{
+export const cards= {
 title: 'ALL BLOGS',
 name: 'cards',
 type: 'document',

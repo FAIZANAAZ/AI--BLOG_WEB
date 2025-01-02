@@ -40,7 +40,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
       try {
         const res = await updateComment(findCard._id, updatedComment)
         setCmtArray(prevComments => 
-          prevComments.map(c => c._id === findCard._id ? { ...c, ...updatedComment } : c)
+          prevComments.map(c => c._id === findCard._id ? { ...res, ...updatedComment } : c)
         )
         resetForm()
         toast.success('Comment updated successfully')
@@ -52,7 +52,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
       const newComment = { name, email, comment, my_id: Number(blog_id) }
       try {
         const res = await createComment(newComment)
-        setCmtArray(prevComments => [...prevComments, res])
+        setCmtArray(res)
         resetForm()
         toast.success('Comment posted successfully')
       } catch (error) {

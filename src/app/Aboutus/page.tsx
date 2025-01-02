@@ -88,7 +88,7 @@ export default function AboutSection() {
               <div data-aos="zoom-in" className="space-y-6 text-gray-600">
                 <p >
                   The entrepreneurial journey started from a 2-person start-up to 65 member
-                  strong team in 5 countries and aims to reinvent the way organization's work.
+                  strong team in 5 countries and aims to reinvent the way organizations work.
                   We have built a reputation for our groundbreaking work in revolutionizing
                   work dynamics and our innovative use of technology. Our diverse and
                   talented team continues to push boundaries, constantly striving to create
@@ -125,7 +125,7 @@ export default function AboutSection() {
                     strokeWidth="2"
                     className="path"
                   />
-                 import Image from 'next/image';
+                
 
 {teamMembers.map((member, index) => {
   const positions = [
@@ -210,7 +210,7 @@ export default function AboutSection() {
                   </p>
                   
                   <p>
-                    Whether it's automating employee support, developing immersive virtual assistants, or enhancing content creation capabilities, our generative technology offers a range of possibilities for optimizing workflows and maximizing productivity
+                    Whether its automating employee support, developing immersive virtual assistants, or enhancing content creation capabilities, our generative technology offers a range of possibilities for optimizing workflows and maximizing productivity
                   </p>
                   
                   <p className="font-medium text-gray-800">

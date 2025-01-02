@@ -1,6 +1,6 @@
 
 
-export default {
+export  const blogComment= {
     title: 'Comment',
     name: 'blogComment',
     type: 'document',

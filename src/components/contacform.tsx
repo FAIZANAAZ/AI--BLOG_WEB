@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Facebook, Youtube, Twitter, Share2, MessageSquare } from 'lucide-react'
-import { sendEmail } from '@/utils/emailServices'
+import { sendEmail } from '../utils/emailServices'
 
 export default function ContactForm() {
   // for emailjs
@@ -28,7 +28,7 @@ export default function ContactForm() {
       contact: contact
     }
     try {
-      await sendEmail(templateParams)
+      await sendEmail(templateParams )
       alert("Email sent successfully")
       setName("")
       setEmail("")

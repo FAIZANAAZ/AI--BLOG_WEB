@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { PortableTextBlock } from '@portabletext/react'
 
 
 
@@ -30,7 +31,7 @@ export default function CardGrid() {
     blogImage: string;
     blogHeading: string;
     blogDate: string;
-    blogContent: any;
+    blogContent: PortableTextBlock[];
     blogId: number;
   }
 

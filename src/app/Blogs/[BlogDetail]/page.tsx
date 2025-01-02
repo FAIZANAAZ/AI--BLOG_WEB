@@ -29,7 +29,7 @@ export default function BlogDetail() {
   useEffect(() => {
     const fetchBlogs = async () => {
         const res = await fetcher()
-        const blog = res.find((blog: any) => blog.blogId === Number(BlogDetail))
+        const blog = res.find((blog:BlogData) => blog.blogId === Number(BlogDetail))
         setData(blog)
       
         
@@ -59,11 +59,11 @@ export default function BlogDetail() {
           {data.blogContent.map((content, index) => (
   <div
     key={index}
-    className={`mt-8 w-full px-4  flex flex-col gap-2  text-white ${
+    className={`mt-8 w-full px-4  flex flex-col gap-2   ${
       index === 0 ? "text-center hidden  text-[40px] font-bold" : ""
      } ${
       content.children && content.children[0].text === "TL;DR" ? "   text-[40px] font-bold" : ""
-     }  ${content.style=="h2" ? "p-3 text-[#1b1b57] bg-gray-50 text-[30px]   text-center" : ""}`}
+     }  ${content.style=="h2" ? "p-3 text-[#1b1b57] bg-gray-50 text-[30px]   text-center" : "text-white"}`}
   >
     <PortableText value={content} />
   </div>

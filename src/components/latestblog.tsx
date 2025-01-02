@@ -39,7 +39,7 @@ export default function LatestCard() {
     blogImage: string;
     blogHeading: string;
     blogDate: string;
-    blogContent: any;
+    blogContent: PortableTextBlock[];
     blogId: number;
   }
 
