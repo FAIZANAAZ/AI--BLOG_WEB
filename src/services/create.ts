@@ -7,7 +7,7 @@ import { client } from "@/sanity/lib/client";
 // yha hm sanity sy data lekr ary hen
 export const myFetch = async (blog_id: number) => {
   const comments = await client.fetch(
-    `*[_type == "blogComment" && id == ${blog_id}]`
+    `*[_type == "blogComment" && my_id == ${blog_id}]`
   );
   return comments;
 };

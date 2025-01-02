@@ -63,7 +63,7 @@ export default function BlogDetail() {
       index === 0 ? "text-center hidden  text-[40px] font-bold" : ""
      } ${
       content.children && content.children[0].text === "TL;DR" ? "   text-[40px] font-bold" : ""
-     }  ${content.style=="h2" ? "p-3 text-blue-700 text-[20px] font-bold bg-white text-center" : ""}`}
+     }  ${content.style=="h2" ? "p-3 text-[#1b1b57] bg-gray-50 text-[30px]   text-center" : ""}`}
   >
     <PortableText value={content} />
   </div>
@@ -75,7 +75,7 @@ export default function BlogDetail() {
     </div>
     <div>
       {/* sbsy phly yha hmny id pas ki params me anywali tky jo card ay commentbhi osi blog pr ho osky ilawa na ho*/}
-    <CommentBlog blog_id={Number(BlogDetail)}/>
+    <CommentBlog key={data?.blogId} blog_id={Number(BlogDetail)}/>
     </div>
     <div className="flex flex-col w-full">
       <h1 className="md:text-5xl font-bold text-[20px] sm:text-[30px] text-blue-400 mb-6 text-center underline">Latest Blogs</h1>
