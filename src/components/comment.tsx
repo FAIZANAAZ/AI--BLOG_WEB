@@ -45,8 +45,9 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
         resetForm()
         toast.success('Comment updated successfully')
       } catch (error) {
+    
       
-        toast.error('Failed to update comment')
+        toast.error(`Failed to update comment ${error} `)
       }
     } else if (name && email && comment) {
       const newComment = { name, email, comment, my_id: Number(blog_id) }
@@ -57,7 +58,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
         toast.success('Comment posted successfully')
       } catch (error) {
      
-        toast.error('Failed to post comment')
+        toast.error(`Failed to post comment ${error} `)
       }
     } else {
       toast.error('Please fill all the fields')
@@ -79,7 +80,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
         const comments = await myFetch(blog_id)
         setCmtArray(comments)
       } catch (error) {
-        alert('Error fetching comments:')
+        alert(`Error fetching comments:${error} `)
       }
     }
     fetchComments()
@@ -101,7 +102,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
       toast.success('Comment deleted successfully')
     } catch (error) {
      
-      toast.error('Failed to delete comment')
+      toast.error(`Failed to delete comment ${error} `)
     }
   }
 
