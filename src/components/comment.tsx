@@ -79,7 +79,7 @@ const CommentBlog = ({ blog_id }: { blog_id: number }) => {
         const comments = await myFetch(blog_id)
         setCmtArray(comments)
       } catch (error) {
-        alert('Error fetching comments:', error)
+        alert('Error fetching comments:')
       }
     }
     fetchComments()
