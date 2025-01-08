@@ -13,6 +13,7 @@ import { PortableTextBlock } from '@portabletext/react'
 
 
 
+
 export default function CardGrid() {
   // for animation 
   useEffect(() => {
@@ -55,10 +56,14 @@ export default function CardGrid() {
 
   // Calculate the articles to display for the current page
   const startIndex = (currentPage - 1) * articlesPerPage
+  // ismy hmny start index nikala he har page ke liye taky hm slice ko dekr bta sken ke is index sy start kro 
   const endIndex = startIndex + articlesPerPage
+  // ismy hmny end index nikala he har page ke liye taky hm slice ko btay ke kitny index tk kam krna he
   const currentArticles = res.slice(startIndex, endIndex)
+  // slice ko hm btaty hen ke is index sy start krna he or end index sy end krna he
 
   const totalPages = Math.ceil(res.length / articlesPerPage)
+  // /
 
   return (
     <div className="container mx-auto px-10 py-12">
