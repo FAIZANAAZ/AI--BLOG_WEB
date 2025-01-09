@@ -43,12 +43,6 @@ export default function CardGrid() {
   const articlesPerPage = 12
 
   useEffect(() => {
-    if (res.length > 0) {
-      AOS.refresh();
-    }
-  }, [res]);
-
-  useEffect(() => {
     const fetchBlogs = async () => {
       const data = await client.fetch(
         `*[_type=='cards'][0].blogs[] {
@@ -61,6 +55,7 @@ export default function CardGrid() {
         {}, { cache: "no-store" }
       );
       setRes(data)
+      AOS.refresh();
     }
     fetchBlogs()
   }, [])
