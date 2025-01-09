@@ -50,7 +50,7 @@ export default function CardGrid() {
           'blogContent': blogContent,
           'blogId': blogId
         }`,
-        { cache: 'no-cache' } // Ensures no cached results are used
+        {}, { cache: "no-store" }
       );
       setRes(data)
     }
