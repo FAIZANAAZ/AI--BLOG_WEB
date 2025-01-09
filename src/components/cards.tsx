@@ -28,6 +28,8 @@ export default function CardGrid() {
     }
   }, []); 
 
+ 
+
   interface Blog {
     blogImage: string;
     blogHeading: string;
@@ -39,6 +41,12 @@ export default function CardGrid() {
   const [res, setRes] = useState<Blog[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const articlesPerPage = 12
+
+  useEffect(() => {
+    if (res.length > 0) {
+      AOS.refresh();
+    }
+  }, [res]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
