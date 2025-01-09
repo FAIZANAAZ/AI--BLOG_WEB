@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { PortableTextBlock } from '@portabletext/react'
 
@@ -16,17 +15,19 @@ import { PortableTextBlock } from '@portabletext/react'
 
 export default function CardGrid() {
   // for animation 
+ 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    // Dynamically import AOS on the client side
+    import('aos').then(AOS => {
       AOS.init({
-        offset: 200, // Jab 200px scroll ho, tab animation trigger ho
-        duration: 400, // Animation ka duration
-        easing: 'ease-in-out', // Animation ka easing effect
-        once: true, 
-        delay: 100, // Animation sirf ek baar chale
+        offset: 200,
+        duration: 400,
+        easing: 'ease-in-out',
+        once: true,
+        delay: 100,
       });
-    }
-  }, []); 
+    });
+  }, []);
 
  
 
@@ -43,6 +44,8 @@ export default function CardGrid() {
   const articlesPerPage = 12
 
   useEffect(() => {
+    let isMounted = true;
+  
     const fetchBlogs = async () => {
       const data = await client.fetch(
         `*[_type=='cards'][0].blogs[] {
@@ -54,11 +57,20 @@ export default function CardGrid() {
         }`,
         {}, { cache: "no-store" }
       );
-      setRes(data)
-      AOS.refresh();
-    }
-    fetchBlogs()
-  }, [])
+      if (isMounted) {
+        setRes(data);
+        // Refresh AOS after data is fetched and component is rendered
+        import('aos').then(AOS => {
+          AOS.refresh();
+        });
+      }
+    };
+    fetchBlogs();
+  
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Calculate the articles to display for the current page
   const startIndex = (currentPage - 1) * articlesPerPage
