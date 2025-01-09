@@ -42,13 +42,16 @@ export default function CardGrid() {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const data = await client.fetch(`*[_type=='cards'][0].blogs[] {
+      const data = await client.fetch(
+        `*[_type=='cards'][0].blogs[] {
           'blogImage': blogImage.asset->url,
           'blogHeading': blogHeading,
           'blogDate': blogDate,
           'blogContent': blogContent,
-          'blogId':blogId
-        }`)
+          'blogId': blogId
+        }`,
+        { cache: 'no-cache' } // Ensures no cached results are used
+      );
       setRes(data)
     }
     fetchBlogs()
