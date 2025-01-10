@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import {useState } from 'react'
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -44,17 +43,7 @@ export default function ContactForm() {
     }
   }
   // for animation
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      AOS.init({
-        offset: 200, // Jab 200px scroll ho, tab animation trigger ho
-        duration: 400, // Animation ka duration
-        easing: 'ease-in-out', // Animation ka easing effect
-        once: true, 
-        delay: 100, // Animation sirf ek baar chale
-      });
-    }
-  }, []);
+
   
  
 
@@ -62,7 +51,7 @@ export default function ContactForm() {
   
   return (
     <div  className="bg-white py-16 px-4 ">
-      <div data-aos="zoom-in" className="container mx-auto max-w-2xl">
+      <div  className="container mx-auto max-w-2xl">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-2">Lets connect !</h2>
           <p className="text-gray-600">

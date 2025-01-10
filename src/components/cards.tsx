@@ -48,9 +48,8 @@ export default function CardGrid() {
       if (isMounted) {
         setRes(data);
         // Refresh AOS after data is fetched and component is rendered
-        import('aos').then(AOS => {
-          AOS.refresh();
-        });
+    
+        ;
       }
     };
     fetchBlogs();
