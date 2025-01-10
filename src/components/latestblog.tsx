@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { PortableTextBlock } from '@portabletext/react'
 
 interface BlogData {
@@ -22,7 +23,17 @@ interface BlogData {
 
 export default function LatestCard() {
   // for animation 
-
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init({
+        offset: 200, // Jab 200px scroll ho, tab animation trigger ho
+        duration: 400, // Animation ka duration
+        easing: 'ease-in-out', // Animation ka easing effect
+        once: true, 
+        delay: 100, // Animation sirf ek baar chale
+      });
+    }
+  }, []); 
 
   interface Blog {
     blogImage: string;
@@ -59,7 +70,7 @@ export default function LatestCard() {
       {[...res].reverse().slice(0,3).map((article:BlogData, index) => (
               <Link  href={`/Blogs/${article.blogId}`} 
             key={index}>
-           <div  className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
+           <div data-aos="flip-left" className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
             transition-all duration-300 border border-blue-500 
             hover:-translate-y-1
             hover:shadow-[0_0_15px_3px_rgb(59,130,246,0.7)]

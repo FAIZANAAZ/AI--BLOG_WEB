@@ -2,11 +2,23 @@
 
 import { Facebook, Instagram, Linkedin, Twitter, Github, MessageCircle, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 export default function AboutSection() {
   // for animation 
-
+  useEffect(() => {
+      if (typeof window !== "undefined") {
+        AOS.init({
+          offset: 200, // Jab 200px scroll ho, tab animation trigger ho
+          duration: 400, // Animation ka duration
+          easing: 'ease-in-out', // Animation ka easing effect
+          once: true, 
+          delay: 100, // Animation sirf ek baar chale
+        });
+      }
+    }, []); 
 
     
   const socialIcons = [
@@ -36,7 +48,7 @@ export default function AboutSection() {
         <div className="absolute right-0 bottom-0 w-48 h-48 bg-[#ff4081] rounded-full blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
         
         {/* Content */}
-        <div className="container mx-auto px-4 "  >
+        <div className="container mx-auto px-4 "  data-aos="zoom-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center">
             About Us
           </h1>
@@ -67,13 +79,13 @@ export default function AboutSection() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               {/* Story Title */}
-              <div  className="relative inline-block">
+              <div data-aos="zoom-in" className="relative inline-block">
                 <h2 className="text-3xl md:text-4xl font-bold">Our story</h2>
                 <div className="absolute -bottom-2 left-0 w-full h-1 bg-orange-400 rounded-full"></div>
               </div>
 
               {/* Story Content */}
-              <div  className="space-y-6 text-gray-600">
+              <div data-aos="zoom-in" className="space-y-6 text-gray-600">
                 <p >
                   The entrepreneurial journey started from a 2-person start-up to 65 member
                   strong team in 5 countries and aims to reinvent the way organizations work.
@@ -192,7 +204,7 @@ export default function AboutSection() {
                   </h2>
                 </div>
 
-                <div className="space-y-6 text-gray-600">
+                <div data-aos="zoom-in" className="space-y-6 text-gray-600">
                   <p  className="text-lg">
                     Our mission is to equip employees at all levels with power of Gen AI, not to replace them but to streamline their processes and empower them to utilize their unique skills and capabilities in more valuable and impactful endeavors.
                   </p>

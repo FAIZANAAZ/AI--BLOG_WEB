@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
+import 'aos/dist/aos.css';
 import { PortableTextBlock } from '@portabletext/react'
 
 
@@ -15,7 +16,18 @@ import { PortableTextBlock } from '@portabletext/react'
 export default function CardGrid() {
   // for animation 
  
-
+  useEffect(() => {
+    // Dynamically import AOS on the client side
+    import('aos').then(AOS => {
+      AOS.init({
+        offset: 200,
+        duration: 400,
+        easing: 'ease-in-out',
+        once: true,
+        delay: 100,
+      });
+    });
+  }, []);
 
  
 
@@ -48,8 +60,9 @@ export default function CardGrid() {
       if (isMounted) {
         setRes(data);
         // Refresh AOS after data is fetched and component is rendered
-    
-        ;
+        import('aos').then(AOS => {
+          AOS.refresh();
+        });
       }
     };
     fetchBlogs();
@@ -77,7 +90,7 @@ export default function CardGrid() {
       {currentArticles.map((article, index) => (
               <Link  href={`/Blogs/${article.blogId}`} 
             key={index}>
-           <div  className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
+           <div data-aos="flip-left" className="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-gray-800 
             transition-all duration-300 border border-blue-500 
             hover:-translate-y-1
             hover:shadow-[0_0_15px_3px_rgb(59,130,246,0.7)]

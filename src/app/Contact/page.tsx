@@ -1,18 +1,30 @@
 "use client";
-
+import { useEffect } from 'react';
 import ContactForm from '../../components/contacform';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function ContactSection() {
       // for animation 
-   
+      useEffect(() => {
+          if (typeof window !== "undefined") {
+            AOS.init({
+              offset: 200, // Jab 200px scroll ho, tab animation trigger ho
+              duration: 400, // Animation ka duration
+              easing: 'ease-in-out', // Animation ka easing effect
+              once: true, 
+              delay: 100, // Animation sirf ek baar chale
+            });
+          }
+        }, []); 
   return (
     <>
       <section className="bg-[#0a1628] text-white py-16 px-4">
         <div className="container mx-auto max-w-4xl">
           {/* Main Heading */}
           <div className="text-center mb-12">
-            <h1   className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1  data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               Lets talk about your{' '}
               <span className="relative inline-block">
                 goals
@@ -30,7 +42,7 @@ export default function ContactSection() {
             
             <div className="grid md:grid-cols-2 gap-8">
               {/* Pakistan Office */}
-              <div  className="relative p-6 rounded-lg border border-gray-800 hover:shadow-[0_0_15px_3px_rgb(255,255,0,0.7)]
+              <div data-aos="fade-right" className="relative p-6 rounded-lg border border-gray-800 hover:shadow-[0_0_15px_3px_rgb(255,255,0,0.7)]
 dark:hover:shadow-[0_0_15px_3px_rgba(255,255,0,0.9)]
  transition-colors">
                 <h3 className="text-xl font-semibold mb-4">Pakistan</h3>
@@ -51,7 +63,7 @@ dark:hover:shadow-[0_0_15px_3px_rgba(255,255,0,0.9)]
               </div>
 
               {/* USA Office */}
-              <div  className="relative p-6 rounded-lg border border-gray-800 hover:shadow-[0_0_15px_3px_rgb(255,255,0,0.7)]
+              <div data-aos="fade-left" className="relative p-6 rounded-lg border border-gray-800 hover:shadow-[0_0_15px_3px_rgb(255,255,0,0.7)]
 dark:hover:shadow-[0_0_15px_3px_rgba(255,255,0,0.9)]
  transition-colors">
                 <h3 className="text-xl font-semibold mb-4">USA</h3>
